@@ -1,5 +1,16 @@
-// Name: SIU MAN CHENG
-// ID: 121104228
+/********************************************************************************
+ * WEB322 – Assignment 03
+ *
+ * I declare that this assignment is my own work in accordance with Seneca's
+ * Academic Integrity Policy:
+ *
+ * https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+ *
+ * Name: SIU MAN CHENG Student ID: 121104228 Date: 24 OCT 2023
+ *
+ * Published URL: https://puce-magnificent-walrus.cyclic.app/
+ *
+ ********************************************************************************/
 
 const express = require("express");
 const legoData = require("./modules/legoSets");
