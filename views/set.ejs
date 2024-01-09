@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+    fetch('https://quotable.io/random')
+    .then((response) => response.json())
+    .then((json) => {
+        document.querySelector("#quote").innerHTML = json.content;
+        document.querySelector("#author").innerHTML = json.author;
+  });
+    });
+    
+    </script>
+
+
+  <body>
+    <!--navbar-->
+    <%- include('partials/navbar', {page: ''}) %>
+
+    <!--container-->
+    <div class="container mx-auto">
+      <div class="hero bg-base-200">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold"><%= set.name %></h1>
+            <p class="py-6">
+              Below, you will find detailed information about the set: <%=
+              set.name %>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <br />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+        <div>
+          <img src="<%= set.img_url %>" />
+        </div>
+        <div>
+          <p>
+            <span><strong>Set Name: </strong></span>
+            <span><%= set.name %></span>
+          </p>
+          <p>
+            <span><strong>Year Released: </strong></span>
+            <span><%= set.year %></span>
+          </p>
+          <p>
+            <span><strong>Theme: </strong></span>
+            <span><%= set.Theme.name %></span>
+          </p>
+          <p>
+            <span><strong>Number of Parts: </strong></span>
+            <span><%= set.num_parts %></span>
+          </p>
+
+          </br>
+
+          <p><span>"</span><span id="quote"></span><span>"</span></p>
+          <p><span>-</span><span id="author"></span></p>
+
+        </br>
+        <% if(session.user){ %> 
+          <a href="/lego/editSet/<%= set.set_num %>" class="btn btn-success">Edit Set</a>
+
+          </br>
+          </br>
+          <% } %>
+
+          <a href="#" onclick="history.back(); return false;" class="btn btn-primary btn-m">Return</a>
+          
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>

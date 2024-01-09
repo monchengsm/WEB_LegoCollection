@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EditSets</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <!--navbar-->
+    <%- include('partials/navbar', {page: '' }) %>
+
+    <!--container-->
+    <div class="container mx-auto">
+
+      <div class="hero bg-base-200">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Edit Sets</h1>
+            <p class="py-6">Below, you can edit <%= set.name %> here!</p>
+          </div>
+        </div>
+      </div>
+
+      <!--form-->
+
+
+      <div class="flex items-center justify-center">
+      <div>
+        <form method="post" action="/lego/editSet">
+         <div class="form-control w-full max-w-xs">
+         <!-- Name -->
+
+        <label class="label">
+            <span class="label-text">Name:</span>    
+        </label>
+        
+        <input
+            type="text"
+            class="input input-bordered w-full max-w-xs"
+            name="name"
+            required value="<%= set.name %>" 
+          />
+
+           <!-- Year -->
+
+        <label class="label">
+            <span class="label-text">Year:</span>    
+        </label>
+        
+        <input
+        type="number"
+        class="input input-bordered w-full max-w-xs"
+        name="year"
+        required value="<%= set.year %>"/>
+        <br />
+        
+        <!-- Number of Parts -->
+        <label class="label">
+            <span class="label-text">Number of Parts:</span>    
+        </label>
+        <input
+          type="number"
+          class="input input-bordered w-full max-w-xs"
+          name="num_parts"
+          required value="<%= set.num_parts %>"/>
+
+        <br />
+
+
+          <!-- Image URL -->
+          <label class="label">
+            <span class="label-text">Image URL:</span>    
+        </label>
+          <input
+            type="url"
+            class="input input-bordered w-full max-w-xs"
+            name="img_url"
+            required value="<%= set.img_url %>"/>
+
+          <br />
+
+          <!-- Theme -->
+          <label class="label">
+            <span class="label-text">Theme:</span>    
+        </label>
+          <select id="theme_id" name="theme_id" required>
+            <% themes.forEach(theme=>{ %>
+                <option <%= (set.theme_id == theme.id) ? "selected" : "" %> value="<%= theme.id %>">
+                  <%= theme.name %>
+                </option>
+              <% }) %>
+          </select>
+          <br />
+
+          <!-- Set Number -->
+          <label class="label">
+            <span class="label-text">Set Number:</span>    
+        </label>
+          <input
+            type="text"
+            class="input input-bordered w-full max-w-xs"
+            name="set_num"
+            required value="<%= set.set_num %>"
+            readonly class="cursor-not-allowed"/>
+          <br />
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">UpdateSet</button>
+        </form>
+
+    </br>
+    <a href="/lego/deleteSet/<%= set.set_num %>" class="btn btn-error">Delete Set</a>
+      
+    </div>
+</div>
+
+       
+      </div>
+  
+    </div>
+  </body>
+</html>
